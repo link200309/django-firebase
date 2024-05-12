@@ -1,0 +1,25 @@
+{% extends 'layouts/home.html'%} {% block content %}
+
+<body>
+  <div class="formulario">
+    <h2>Login</h2>
+
+    <div style="background-color: aliceblue; border-radius: 5px">{{error}}</div>
+
+    <form action="/" method="post">
+      {% csrf_token %}
+      <div class="elemento">
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre" required="true" />
+      </div>
+      <div class="elemento">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required="true" />
+      </div>
+      <div class="elemento">
+        <input type="submit" name="submit" id="submit" value="enviar" />
+      </div>
+    </form>
+  </div>
+</body>
+{% endblock %}

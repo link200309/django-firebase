@@ -1,0 +1,42 @@
+.formulario {
+    margin: 100px auto;
+    width: 400px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+  
+  .formulario h2 {
+    margin: 0 0 30px;
+    font-size: 30px;
+    color: rgb(187, 245, 245);
+    text-align: center;
+  }
+  
+  .formulario .elemento label {
+    display: block;
+    margin: 10px;
+    color: aquamarine;
+  }
+  
+  .formulario .elemento input {
+    width: 100%;
+    padding: 10px;
+    color: aliceblue;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+  }
+  
+  .formulario .elemento input[type="submit"] {
+    background: linear-gradient(rgb(255, 0, 51), rgb(175, 71, 161));
+    border: none;
+  
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 30px;
+  }
