@@ -1,0 +1,82 @@
+.card-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container-form {
+  width: 400px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgba(20, 20, 36, 0.722);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+.container-form > form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-form h1 {
+  margin: 0 0 30px;
+  font-size: 30px;
+  color: rgb(187, 245, 245);
+  text-align: center;
+}
+
+.card-form label {
+  width: 100%;
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  letter-spacing: 3px;
+}
+
+.card-form textarea {
+  resize: none;
+}
+
+.card-form input {
+  width: 95%;
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+}
+
+.card-form input[type="submit"] {
+  width: 100%;
+  background: linear-gradient(rgb(255, 0, 51), rgb(175, 71, 161));
+  border: none;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+/*INTERFACES*/
+
+.functions {
+  display: flex;
+  flex-direction: column;
+}
+
+.functions button {
+  width: 100%;
+  background: linear-gradient(rgb(255, 0, 51), rgb(88, 71, 175));
+  border: none;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.card-form h2{
+    color: aliceblue;
+}

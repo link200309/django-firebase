@@ -96,10 +96,11 @@ class Docente(UserN):
         return self.nombre
     
 class Curso(models.Model):
+    nombre = models.CharField(max_length=50)
     docente = models.ForeignKey(Docente, on_delete=models.PROTECT)
 
     def __str__(self):
-        return f"Curso {self.id_curso}"
+        return f"Curso {self.nombre}"
 
 class Estudiante(UserN):
     codigo_sis = models.IntegerField()
@@ -111,7 +112,7 @@ class Tarea(models.Model):
     curso = models.ForeignKey(Curso, on_delete=models.PROTECT)
     fecha_publicado = models.DateField()
     fecha_limite = models.DateField(null=True, blank=True)
-    titulo = models.CharField(max_length=30, null=True, blank=True)
+    titulo = models.CharField(max_length=50, null=True, blank=True)
     descripcion = models.TextField(null=True, blank=True)
     
     def __str__(self):
@@ -123,10 +124,9 @@ class Inscrito(models.Model):
     
     class Meta:
         unique_together = ['estudiante', 'curso']
-        
 
     def __str__(self):
-        return f"{self.estudiante.nombre} - Curso {self.curso.id_curso}"
+        return f"{self.estudiante.nombre} - Curso {self.curso.nombre}"
 
 class Entrega(models.Model):
     tarea = models.ForeignKey(Tarea, on_delete=models.PROTECT)
@@ -160,3 +160,13 @@ class Comentario(models.Model):
 
     def __str__(self):
         return self.descripcion
+    
+class Session(models.Model):
+    id_user = models.ForeignKey(UserN, on_delete=models.PROTECT)
+    token = models.TextField()
+    activo = models.BooleanField()
+
+class Log(models.Model):
+    modelo_afectado = models.CharField(max_length=100)
+    tipo_cambio = models.CharField(max_length=100)
+    fecha = models.DateTimeField(auto_now_add=True)

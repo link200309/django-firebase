@@ -1,27 +1,38 @@
-{% load static %}
+{% extends 'layouts/home.html'%} {% block content %}
 
-<body onload=iniciarSesion()>
-  <h1>Bienvenid@ {{datosUsuario.nombre}} :D</h1>
+<body>
+  <a href="{% url 'logoutUser' idUser=datosUsuario.id %}"><button>logout</button></a>
 
-  <a href="/logout"><button>logout</button></a>
+  <div class="card-form">
+    <h1>Bienvenid@ {{datosUsuario.nombre}} :D</h1>
+    <br />
 
-  <br />
+    <h2>Tus funcionalidades son:</h2>
 
-  <h3>Tus funcionalidades son:</h3>
+    <div class="container-form functions">
+      {% for interfaz in interfaces %} {% if interfaz == 'subir tarea' %}
+      <a href="{% url 'subirTarea' idUser=datosUsuario.id %}"
+        ><button>subir tarea</button></a
+      >
+      {% endif %} {% if interfaz == 'dar tarea' %}
+      <a href="{% url 'darTarea' idUser=datosUsuario.id %}"
+        ><button>dar tarea</button></a
+      >
+      {% endif %} {% if interfaz == 'ver entregas' %}
+      <button>ver entregas</button>
+      {% endif %} {% if interfaz == 'ver planillas' %}
+      <button>ver planillas</button>
+      {% endif %} {% if interfaz == 'ver notas' %}
+      <button>ver notas</button>
+      {% endif %} {% if interfaz == 'ver materias inscritas' %}
+      <button>ver materias inscritas</button>
+      {% endif %} {% endfor %}
+    </div>
+  </div>
 
-  {% for interfaz in interfaces %} {% if interfaz == 'subir tarea' %}
-  <button>subir tarea</button>
-  {% endif %} {% if interfaz == 'dar tarea' %}
-  <button>dar tarea</button>
-  {% endif %} {% if interfaz == 'ver entregas' %}
-  <button>ver entregas</button>
-  {% endif %} {% if interfaz == 'ver planillas' %}
-  <button>ver planillas</button>
-  {% endif %} {% if interfaz == 'ver notas' %}
-  <button>ver notas</button>
-  {% endif %} {% if interfaz == 'ver materias inscritas' %}
-  <button>ver materias inscritas</button>
-  {% endif %} {% endfor %}
-
-  <script src="{% static 'js/app.js' %}"></script>
+  <!-- <script>
+    localStorage.setItem('jwt_token', '{{ datosUsuario.token }}');
+</script> -->
 </body>
+
+{% endblock %}

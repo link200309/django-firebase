@@ -1,0 +1,19 @@
+{% extends 'layouts/home.html'%} {% block content %}
+
+<div class="tablon">
+  <h1>Tablon de tareas</h1>
+    {% for tarea in tareas %}
+
+    <div class="card">
+      <h3>{{tarea.titulo}}</h3>
+      <p>Curso: {{tarea.curso.nombre}}</p>
+      <p>fecha publicado: {{tarea.fecha_publicado}}</p>
+      <p>fechal limite: {{tarea.fecha_limite}}</p>
+      <p>{{tarea.descripcion}}</p>
+      <button>Enviar Tarea</button>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

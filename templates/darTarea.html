@@ -1,0 +1,32 @@
+{% extends 'layouts/home.html'%} {% block content %}
+
+
+<div class="card-form">
+    <h1>Dar Tarea</h1>
+    <div class="container-form">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <label for="">Titulo:</label>
+      <input type="text" name="titulo"/>
+
+      <label for="">Descripcion:</label>
+      <textarea name="descripcion" id="" rows="3"></textarea>
+
+      <label for="">Limite:</label>
+      <input type="date" name="limite" />
+
+      <label for="">Curso:</label>
+      <select name="curso" id="">
+        {% for curso in cursos %}
+        <option value="{{curso.id}}">{{curso.nombre}}</option>
+        {% endfor %}
+        
+      </select>
+
+      <input type="submit" value="Dar tarea">
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
