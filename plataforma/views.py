@@ -34,13 +34,10 @@ def loginUser(request):
             return render(request, 'index.html', {'error': error_message})
         
 def logoutUser(request, idUser):
-    
     sesion = Session.objects.filter(id_user=idUser, activo=True).first()
-    
     if(sesion):
         sesion.activo = False
         sesion.save()
-    
     return redirect('loginUser')
     
 ##CONSULTAS    
@@ -85,6 +82,10 @@ def darTarea(request, idUser):
 def subirTarea(request, idUser):    
     tareasAsignadas = obtenerTareasAsignadas(idUser)
     return render(request, 'subirTarea.html', {'idUser':idUser, 'tareas':tareasAsignadas})
+
+def chatear(request, idUser, idDocente):    
+    return render(request, 'chat.html', {'idUser':idUser, 'idDocente':idDocente})
+
     
 
     

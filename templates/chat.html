@@ -1,0 +1,71 @@
+{% extends 'layouts/home.html'%} {% block content %}
+
+<body>
+  <div class="container-chat">
+    <ul></ul>
+  </div>
+
+  <input placeholder="Escribe tu mensaje aquí..." />
+  <button>Enviar</button>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getDatabase,
+      ref,
+      set,
+      push,
+      onValue,
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCyd9WTgsvWLjorFmoTfmi9A4ddm5r1ld0",
+      authDomain: "proyectois-8f430.firebaseapp.com",
+      databaseURL: "https://proyectois-8f430-default-rtdb.firebaseio.com",
+      projectId: "proyectois-8f430",
+      storageBucket: "proyectois-8f430.appspot.com",
+      messagingSenderId: "968822834438",
+      appId: "1:968822834438:web:1ab5b8d8d125c278068a87",
+      measurementId: "G-WMN45271CT",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    const canal = "chat14";
+    const messageRef = ref(database, "Chat/" + canal + "/message");
+
+    const container = document.querySelector("div");
+    const boton = document.querySelector("button");
+    const input = document.querySelector("input");
+    const listaMensajes = document.querySelector("ul");
+
+    boton.addEventListener("click", enviarMensaje);
+
+    onValue(messageRef, (snapshot) => {
+        let mensajes = "";
+        snapshot.forEach((child) => {
+            let claseSender = "";
+            if({{idUser}} === child.val().sender){
+                claseSender = "sender";
+            } else {
+                claseSender = "receiver";
+            }
+            mensajes += `<li class="message ${claseSender}"><p>`+child.val().mensaje+"</p></li>";
+            listaMensajes.innerHTML = mensajes;
+            container.scrollTop = container.scrollHeight;
+        });
+    });
+
+    function enviarMensaje() {
+      push(messageRef, {
+        mensaje: input.value,
+        sender: {{idUser}},
+      });
+      container.scrollTop = container.scrollHeight;
+    }
+  </script>
+</body>
+
+{% endblock %}

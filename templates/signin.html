@@ -1,7 +1,9 @@
 {% extends 'layouts/home.html'%} {% block content %}
 
 <body>
-  <a href="{% url 'logoutUser' idUser=datosUsuario.id %}"><button>logout</button></a>
+  <a href="{% url 'logoutUser' idUser=datosUsuario.id %}"
+    ><button>logout</button></a
+  >
 
   <div class="card-form">
     <h1>Bienvenid@ {{datosUsuario.nombre}} :D</h1>
@@ -17,6 +19,10 @@
       {% endif %} {% if interfaz == 'dar tarea' %}
       <a href="{% url 'darTarea' idUser=datosUsuario.id %}"
         ><button>dar tarea</button></a
+      >
+      <a
+        href="{% url 'chatear' idUser=datosUsuario.id idDocente=datosUsuario.id %}"
+        ><button>Mensajear</button></a
       >
       {% endif %} {% if interfaz == 'ver entregas' %}
       <button>ver entregas</button>

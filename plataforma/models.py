@@ -69,6 +69,9 @@ class UserNRol(models.Model):
     fecha_activacion = models.DateField()
     desde = models.DateField()
     hasta = models.DateField()
+    
+    class Meta:
+        unique_together = ['user', 'rol']
 
     def __str__(self):
         return f"{self.user.nombre} - {self.rol.nombre}"
@@ -77,6 +80,9 @@ class UserNRol(models.Model):
 class RolFuncion(models.Model):
     rol = models.ForeignKey(Rol, on_delete=models.PROTECT)
     funcion = models.ForeignKey(Funcion, on_delete=models.PROTECT)
+    
+    class Meta:
+        unique_together = ['rol', 'funcion']
 
     def __str__(self):
         return f"{self.rol.nombre} - {self.funcion.nombre}"
@@ -85,6 +91,9 @@ class RolFuncion(models.Model):
 class FuncionIU(models.Model):
     funcion = models.ForeignKey(Funcion, on_delete=models.PROTECT)
     iu = models.ForeignKey(Iu, on_delete=models.PROTECT)
+    
+    class Meta:
+        unique_together = ['funcion', 'iu']
 
     def __str__(self):
         return f"{self.funcion.nombre} - {self.iu.nombre}"
@@ -132,6 +141,9 @@ class Entrega(models.Model):
     tarea = models.ForeignKey(Tarea, on_delete=models.PROTECT)
     inscrito = models.ForeignKey(Inscrito, on_delete=models.PROTECT)
     fecha_hora = models.DateTimeField()
+    
+    class Meta:
+        unique_together = ['tarea', 'inscrito']
 
     def __str__(self):
         return f"Entrega de {self.tarea.titulo} por {self.inscrito.estudiante.nombre}"
@@ -143,16 +155,17 @@ class TipoArchivo(models.Model):
     def __str__(self):
         return self.formato
 
-
 class Archivo(models.Model):
     tipo_archivo = models.ForeignKey(TipoArchivo, on_delete=models.PROTECT)
     entrega = models.ForeignKey(Entrega, on_delete=models.PROTECT)
     nombre = models.CharField(max_length=50)
     archivo = models.BinaryField()
+    
+    class Meta:
+        unique_together = ['tipo_archivo', 'entrega']
 
     def __str__(self):
         return self.nombre
-
 
 class Comentario(models.Model):
     entrega = models.ForeignKey(Entrega, on_delete=models.PROTECT)

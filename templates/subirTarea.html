@@ -11,6 +11,9 @@
       <p>fechal limite: {{tarea.fecha_limite}}</p>
       <p>{{tarea.descripcion}}</p>
       <button>Enviar Tarea</button>
+      <a href="{% url 'chatear' idUser=idUser idDocente=tarea.curso.docente.id %}"
+        ><button>Mensajear docente</button></a
+      >
     </div>
 
     {% endfor %}
